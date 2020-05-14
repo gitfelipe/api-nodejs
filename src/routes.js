@@ -20,6 +20,13 @@ routes.put('/users/:id', celebrate({
     [Segments.PARAMS]: Joi.object().keys({
         id: Joi.number().required(),
     }),
+
+    [Segments.BODY]: Joi.object().keys({
+        name: Joi.string().trim(),
+        email: Joi.string().email().trim(),
+        phone: Joi.string().trim(),
+        location: Joi.string().empty('').default('unknown').trim(),
+    }),
 }), UserController.update);
 
 routes.delete('/users/:id', celebrate({
